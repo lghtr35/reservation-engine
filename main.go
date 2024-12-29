@@ -46,6 +46,9 @@ func main() {
 	}
 
 	g := gin.New()
+	// TODO implement generate api token endpoint
+	// TODO implement deleting non valid api tokens
+	// TODO implement validation for if a command is going to affect the same source that it had in apiToken and secret
 	api := g.Group("/api")
 	{
 		v1 := api.Group("/v1")
@@ -78,5 +81,5 @@ func main() {
 			}
 		}
 	}
-	g.Run()
+	g.Run(":11242")
 }

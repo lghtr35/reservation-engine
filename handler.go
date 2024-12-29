@@ -220,6 +220,14 @@ func (h *Handler) CreateSource(c *gin.Context) {
 		return
 	}
 
+	tQ := commands.NewCreateApiTokenCommand(h.db, h.logger, h.hasher, request.CustomerID, res)
+	_, err = tQ.Execute()
+	if err != nil {
+		h.logger.Err(err)
+		c.AbortWithError(http.StatusBadRequest, err)
+		return
+	}
+
 	c.JSON(http.StatusOK, res)
 }
 
